@@ -48,17 +48,14 @@ class LoginScreen extends StatelessWidget {
             horizontal: Sizes.size40,
           ),
           child: Column(
-            children: const [
+            children: [
               Gaps.v80,
               Text(
                 "Log in to 커플스터디앱",
-                style: TextStyle(
-                  fontSize: Sizes.size24,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               Gaps.v20,
-              Text(
+              const Text(
                 "Manage your account, check notif ications, comment on videos, and more.",
                 style: TextStyle(
                   fontSize: Sizes.size16,
@@ -67,13 +64,13 @@ class LoginScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Gaps.v40,
-              AuthButton(
+              const AuthButton(
                 icon: FaIcon(FontAwesomeIcons.user),
                 text: "Use email & password",
                 screenMove: "email",
               ),
               Gaps.v16,
-              AuthButton(
+              const AuthButton(
                 icon: FaIcon(FontAwesomeIcons.apple),
                 text: "Continue with Apple",
                 screenMove: "apple",

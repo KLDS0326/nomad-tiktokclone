@@ -4,7 +4,6 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
-import 'package:tiktok_clone/util.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -61,22 +60,16 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Gaps.v80,
-                  const Text(
-                    "Sign up for 방구석 여행앱",
-                    style: TextStyle(
-                      fontSize: Sizes.size24,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  Text(
+                    "Sign up for 방구석여행앱",
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          color: Colors.blue,
+                        ),
                   ),
                   Gaps.v20,
                   Text(
                     "Create a profile, follow other accounts, make your own videos, and more.",
-                    style: TextStyle(
-                      fontSize: Sizes.size16,
-                      color: isDarkMode(context)
-                          ? Colors.grey.shade300
-                          : Colors.white,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.center,
                   ),
                   Gaps.v40,
