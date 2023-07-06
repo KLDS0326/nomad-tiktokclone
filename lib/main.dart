@@ -93,8 +93,9 @@ class TikTokApp extends StatelessWidget {
         title: 'TikTok Clone',
         themeMode: ThemeMode.dark, //시스템 설정 따라감.
         theme: ThemeData(
+          textTheme: GoogleFonts.itimTextTheme(),
           brightness: Brightness.light,
-          textTheme: TextTheme(
+          /* textTheme: TextTheme(
             displayLarge: GoogleFonts.openSans(
                 fontSize: 95, fontWeight: FontWeight.w300, letterSpacing: -1.5),
             displayMedium: GoogleFonts.openSans(
@@ -121,7 +122,7 @@ class TikTokApp extends StatelessWidget {
                 fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
             labelSmall: GoogleFonts.roboto(
                 fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
-          ),
+          ), */
 
           scaffoldBackgroundColor: Colors.white,
           bottomAppBarTheme: BottomAppBarTheme(
@@ -149,6 +150,8 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
+          textTheme: GoogleFonts.itimTextTheme(
+              ThemeData(brightness: Brightness.dark).textTheme),
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
           primaryColor: const Color(0xFFE9435A),
