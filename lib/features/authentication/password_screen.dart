@@ -4,6 +4,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/birthday_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
+import 'package:tiktok_clone/util.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
@@ -72,7 +73,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: !isDarkMode(context) ? Colors.black45 : Colors.white,
         appBar: AppBar(
           title: const Text(
             "Sign Up",

@@ -60,7 +60,6 @@ void main() {
 //틱톡 클론코딩
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:tiktok_clone/util.dart';
@@ -93,7 +92,7 @@ class TikTokApp extends StatelessWidget {
         title: 'TikTok Clone',
         themeMode: ThemeMode.dark, //시스템 설정 따라감.
         theme: ThemeData(
-          textTheme: GoogleFonts.itimTextTheme(),
+          textTheme: Typography.blackMountainView, //
           brightness: Brightness.light,
           /* textTheme: TextTheme(
             displayLarge: GoogleFonts.openSans(
@@ -150,10 +149,11 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
-          textTheme: GoogleFonts.itimTextTheme(
-              ThemeData(brightness: Brightness.dark).textTheme),
+          textTheme: Typography.whiteMountainView,
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
+          appBarTheme: AppBarTheme(backgroundColor: Colors.grey.shade900),
+          bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey.shade900),
           primaryColor: const Color(0xFFE9435A),
         ),
         home: const SignUpScreen()

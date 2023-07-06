@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:tiktok_clone/util.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -15,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey.shade50,
+        color: !isDarkMode(context) ? null : Colors.grey.shade50,
         elevation: 2,
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -42,9 +43,9 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: Sizes.size40,
           ),
           child: Column(
@@ -52,25 +53,30 @@ class LoginScreen extends StatelessWidget {
               Gaps.v80,
               Text(
                 "Log in to 커플스터디앱",
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Gaps.v20,
-              const Text(
-                "Manage your account, check notif ications, comment on videos, and more.",
-                style: TextStyle(
-                  fontSize: Sizes.size16,
-                  color: Colors.black45,
+              Opacity(
+                opacity: 0.7,
+                child: Text(
+                  "Manage your account, check notif ications, comment on videos, and more.",
+                  style: TextStyle(
+                    fontSize: Sizes.size16,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               Gaps.v40,
-              const AuthButton(
+              AuthButton(
                 icon: FaIcon(FontAwesomeIcons.user),
                 text: "Use email & password",
                 screenMove: "email",
               ),
               Gaps.v16,
-              const AuthButton(
+              AuthButton(
                 icon: FaIcon(FontAwesomeIcons.apple),
                 text: "Continue with Apple",
                 screenMove: "apple",
