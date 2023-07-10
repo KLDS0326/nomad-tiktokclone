@@ -61,7 +61,7 @@ void main() {
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
+import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone/util.dart';
 
 void main() async {
@@ -156,7 +156,7 @@ class TikTokApp extends StatelessWidget {
           bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey.shade900),
           primaryColor: const Color(0xFFE9435A),
         ),
-        home: const SignUpScreen()
+        home: const MainNavigationScreen()
         // const SignUpScreen()  //ActivityScreen() // MainScreen() -> 스터디앱
         //MapsDemo() //const MainNavigationScreen() //MapSample() //const MainNavigationScreen(),  //
         );
