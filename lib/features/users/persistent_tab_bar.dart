@@ -10,31 +10,44 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
     final isDark = isDarkMode(context);
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).appBarTheme.backgroundColor,
+        color: isDark ? Colors.black : Colors.white,
         border: Border.symmetric(
           horizontal: BorderSide(
-              color: isDark ? Colors.grey.shade700 : Colors.grey.shade200,
-              width: 1),
+            color: isDark ? Colors.white : Colors.black,
+            width: 1,
+          ),
         ),
       ),
       child: TabBar(
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
+        indicatorColor: isDark
+            ? Colors.white
+            : Colors.black, // Theme.of(context).tabBarTheme.indicatorColor,
         labelPadding: const EdgeInsets.symmetric(
           vertical: Sizes.size10,
         ),
-        tabs: const [
+        tabs: [
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size20,
             ),
-            child: Icon(Icons.grid_4x4_rounded),
+            child: Icon(
+              Icons.grid_4x4_rounded,
+              color: isDarkMode(context)
+                  ? Colors.grey.shade200
+                  : Colors.grey.shade700,
+            ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size20,
             ),
-            child: FaIcon(FontAwesomeIcons.heart),
+            child: FaIcon(
+              FontAwesomeIcons.heart,
+              color: isDarkMode(context)
+                  ? Colors.grey.shade200
+                  : Colors.grey.shade700,
+            ),
           )
         ],
       ),
