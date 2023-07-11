@@ -36,7 +36,7 @@ class _InterestButtonState extends State<InterestButton> {
         decoration: BoxDecoration(
           color: _isSelected
               ? Theme.of(context).primaryColor
-              : !isDarkMode(context)
+              : isDarkMode(context)
                   ? Colors.grey.shade700
                   : Colors.white,
           borderRadius: BorderRadius.circular(

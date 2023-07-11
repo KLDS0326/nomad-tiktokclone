@@ -90,7 +90,7 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'TikTok Clone',
-        themeMode: ThemeMode.dark, //시스템 설정 따라감.
+        themeMode: ThemeMode.system, //시스템 설정 따라감.
         theme: ThemeData(
           textTheme: Typography.blackMountainView, //
           brightness: Brightness.light,

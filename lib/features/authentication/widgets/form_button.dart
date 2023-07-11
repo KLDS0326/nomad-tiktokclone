@@ -25,7 +25,7 @@ class FormButton extends StatelessWidget {
             Sizes.size5,
           ),
           color: disabled
-              ? !isDarkMode(context)
+              ? isDarkMode(context)
                   ? Colors.grey.shade800
                   : Colors.grey.shade300
               : Theme.of(context).primaryColor,

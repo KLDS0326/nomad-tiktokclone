@@ -50,7 +50,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: !isDarkMode(context) ? Colors.black45 : Colors.white,
+      backgroundColor: isDarkMode(context) ? Colors.black45 : Colors.white,
       appBar: AppBar(
         title: const Text(
           "Sign Up",
