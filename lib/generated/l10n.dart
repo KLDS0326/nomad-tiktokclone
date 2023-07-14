@@ -51,12 +51,16 @@ class S {
   }
 
   /// `Sign up for {nameOfTheApp}`
-  String signUpTitle(String nameOfTheApp) {
+  String signUpTitle(String nameOfTheApp, DateTime when) {
+    final DateFormat whenDateFormat =
+        DateFormat('💖 LLLL 😱 Hm', Intl.getCurrentLocale());
+    final String whenString = whenDateFormat.format(when);
+
     return Intl.message(
       'Sign up for $nameOfTheApp',
       name: 'signUpTitle',
       desc: 'The title people see when they open the app for the first time.',
-      args: [nameOfTheApp],
+      args: [nameOfTheApp, whenString],
     );
   }
 
@@ -110,43 +114,58 @@ class S {
     );
   }
 
-  /// `Log in`
-  String get logIn {
+  /// `Log in {gender, select, male{sir} female{madam} other{human}}.`
+  String logIn(String gender) {
     return Intl.message(
-      'Log in',
+      'Log in ${Intl.gender(gender, male: 'sir', female: 'madam', other: 'human')}.',
       name: 'logIn',
       desc: '',
-      args: [],
+      args: [gender],
     );
   }
 
   /// `{potato}`
-  String likeCount(Object potato) {
+  String likeCount(int potato) {
+    final NumberFormat potatoNumberFormat = NumberFormat.compact(
+      locale: Intl.getCurrentLocale(),
+    );
+    final String potatoString = potatoNumberFormat.format(potato);
+
     return Intl.message(
-      '$potato',
+      '$potatoString',
       name: 'likeCount',
-      desc: '',
-      args: [potato],
+      desc: 'Anything you want',
+      args: [potatoString],
     );
   }
 
   /// `{potato}`
-  String commentCount(Object potato) {
+  String commentCount(int potato) {
+    final NumberFormat potatoNumberFormat = NumberFormat.compact(
+      locale: Intl.getCurrentLocale(),
+    );
+    final String potatoString = potatoNumberFormat.format(potato);
+
     return Intl.message(
-      '$potato',
+      '$potatoString',
       name: 'commentCount',
-      desc: '',
-      args: [potato],
+      desc: 'Anything you want',
+      args: [potatoString],
     );
   }
 
   /// `{value} {value2, plural, =1{comment} other{comments}}`
-  String commentTitle(Object value, num value2) {
+  String commentTitle(int value, num value2) {
+    final NumberFormat valueNumberFormat = NumberFormat.compact(
+      locale: Intl.getCurrentLocale(),
+    );
+    final String valueString = valueNumberFormat.format(value);
+
     return Intl.message(
-      '$value ${Intl.plural(value2, one: 'comment', other: 'comments')}',
+      '$valueString ${Intl.plural(value2, one: 'comment', other: 'comments')}',
       name: 'commentTitle',
-      desc: '',
-      args: [value, value2],
+      desc: 'Anything you want',
+      args: [valueString, value2],
     );
   }
 }
