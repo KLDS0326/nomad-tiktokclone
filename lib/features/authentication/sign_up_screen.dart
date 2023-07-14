@@ -4,6 +4,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -34,14 +35,14 @@ class SignUpScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Already have an account?',
+                  Text(
+                    S.of(context).alreadyHaveAnAccount,
                   ),
                   Gaps.h5,
                   GestureDetector(
                     onTap: () => _onLoginTap(context),
                     child: Text(
-                      'Log in',
+                      S.of(context).logIn("female"),
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w600,
@@ -60,48 +61,51 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Gaps.v80,
-                  const Text(
-                    "Sign up for 방구석여행앱",
-                    style: TextStyle(
+                  Text(
+                    S.of(context).signUpTitle("TikTok"),
+                    style: const TextStyle(
                       fontSize: Sizes.size24,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Gaps.v20,
-                  Text(
-                    "Create a profile, follow other accounts, make your own videos, and more.",
-                    style: Theme.of(context).textTheme.titleMedium,
-                    textAlign: TextAlign.center,
+                  Opacity(
+                    opacity: 0.7,
+                    child: Text(
+                      S.of(context).signUpSubtitle(19576),
+                      style: Theme.of(context).textTheme.titleMedium,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   Gaps.v40,
                   if (orientation == Orientation.portrait) ...[
-                    const AuthButton(
-                      icon: FaIcon(FontAwesomeIcons.user),
-                      text: "Use email & password",
+                    AuthButton(
+                      icon: const FaIcon(FontAwesomeIcons.user),
+                      text: S.of(context).emailPasswordButton,
                       screenMove: "user",
                     ),
                     Gaps.v16,
-                    const AuthButton(
-                      icon: FaIcon(FontAwesomeIcons.apple),
-                      text: "Continue with Apple",
+                    AuthButton(
+                      icon: const FaIcon(FontAwesomeIcons.apple),
+                      text: S.of(context).appleButton,
                       screenMove: "apple",
                     ),
                   ],
                   if (orientation == Orientation.landscape)
-                    const Row(
+                    Row(
                       children: [
                         Expanded(
                           child: AuthButton(
-                            icon: FaIcon(FontAwesomeIcons.user),
-                            text: "Use email & password",
+                            icon: const FaIcon(FontAwesomeIcons.user),
+                            text: S.of(context).emailPasswordButton,
                             screenMove: "user",
                           ),
                         ),
                         Gaps.h16,
                         Expanded(
                           child: AuthButton(
-                            icon: FaIcon(FontAwesomeIcons.apple),
-                            text: "Continue with Apple",
+                            icon: const FaIcon(FontAwesomeIcons.apple),
+                            text: S.of(context).appleButton,
                             screenMove: "apple",
                           ),
                         ),
