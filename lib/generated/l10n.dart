@@ -110,13 +110,43 @@ class S {
     );
   }
 
-  /// `Log in {gender, select, male{sir} female{madam} other{human}}.`
-  String logIn(String gender) {
+  /// `Log in`
+  String get logIn {
     return Intl.message(
-      'Log in ${Intl.gender(gender, male: 'sir', female: 'madam', other: 'human')}.',
+      'Log in',
       name: 'logIn',
       desc: '',
-      args: [gender],
+      args: [],
+    );
+  }
+
+  /// `{potato}`
+  String likeCount(Object potato) {
+    return Intl.message(
+      '$potato',
+      name: 'likeCount',
+      desc: '',
+      args: [potato],
+    );
+  }
+
+  /// `{potato}`
+  String commentCount(Object potato) {
+    return Intl.message(
+      '$potato',
+      name: 'commentCount',
+      desc: '',
+      args: [potato],
+    );
+  }
+
+  /// `{value} {value2, plural, =1{comment} other{comments}}`
+  String commentTitle(Object value, num value2) {
+    return Intl.message(
+      '$value ${Intl.plural(value2, one: 'comment', other: 'comments')}',
+      name: 'commentTitle',
+      desc: '',
+      args: [value, value2],
     );
   }
 }

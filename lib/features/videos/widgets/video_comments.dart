@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/util.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 
 class VideoComments extends StatefulWidget {
   // input 을 다루어야 하니 stf 임.
@@ -52,7 +53,7 @@ class _VideoCommentState extends State<VideoComments> {
           // 새로운 화면으로 왔다는 것을 알고있어 이전 화면 돌아가는 기능이 자동탑재
           backgroundColor: isDark ? null : Colors.grey.shade50,
           automaticallyImplyLeading: false,
-          title: const Text("222 commnets"),
+          title: Text(S.of(context).commentTitle(987987, 987987)),
           actions: [
             IconButton(
               onPressed: _onClosePressed,
