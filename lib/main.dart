@@ -92,6 +92,7 @@ class TikTokApp extends StatelessWidget {
         title: 'TikTok Clone',
         themeMode: ThemeMode.system, //시스템 설정 따라감.
         theme: ThemeData(
+          useMaterial3: true,
           textTheme: Typography.blackMountainView, //
           brightness: Brightness.light,
           /* textTheme: TextTheme(
@@ -141,6 +142,7 @@ class TikTokApp extends StatelessWidget {
             elevation: 0,
             foregroundColor: Colors.black,
             backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
             titleTextStyle: TextStyle(
               color: Colors.black,
               fontSize: Sizes.size16 + Sizes.size2,
@@ -155,14 +157,34 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
-          tabBarTheme: const TabBarTheme(indicatorColor: Colors.white),
+          useMaterial3: true,
+          tabBarTheme: TabBarTheme(
+            indicatorColor: Colors.white,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.grey.shade700,
+          ),
           textSelectionTheme: const TextSelectionThemeData(
             cursorColor: Color(0xFFE9435A),
           ),
           textTheme: Typography.whiteMountainView,
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Colors.black,
-          appBarTheme: AppBarTheme(backgroundColor: Colors.grey.shade900),
+          appBarTheme: AppBarTheme(
+            surfaceTintColor: Colors.grey.shade900,
+            backgroundColor: Colors.grey.shade900,
+            foregroundColor: Colors.white,
+            titleTextStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: Sizes.size16 + Sizes.size2,
+              fontWeight: FontWeight.w600,
+            ),
+            actionsIconTheme: IconThemeData(
+              color: Colors.grey.shade100,
+            ),
+            iconTheme: IconThemeData(
+              color: Colors.grey.shade100,
+            ),
+          ),
           bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey.shade900),
           primaryColor: const Color(0xFFE9435A),
         ),

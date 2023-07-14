@@ -151,8 +151,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontSize: Sizes.size16 + Sizes.size2,
-                            fontWeight: FontWeight.bold),
+                          fontSize: Sizes.size16 + Sizes.size2,
+                          fontWeight: FontWeight.bold,
+                          height: 1.1,
+                        ),
                       ),
                       Gaps.v5,
                       /*      if (constraints.maxWidth < 200 ||
