@@ -7,12 +7,13 @@ import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static const routeName = "/";
   const SignUpScreen({super.key});
 
-  void _onLoginTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
+  void _onLoginTap(BuildContext context) async {
+    final result = await Navigator.of(context).pushNamed(LoginScreen.routeName);
+
+    print(result);
   }
 
   @override

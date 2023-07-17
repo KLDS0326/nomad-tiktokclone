@@ -24,7 +24,8 @@ class AuthButton extends StatelessWidget {
         ),
       );
     } else if (screenMove == "user") {
-      Navigator.of(context).push(
+      Navigator.of(context).pushNamed(UserNameScreen.routeName);
+/*       Navigator.of(context).push(
         PageRouteBuilder(
             transitionDuration: const Duration(seconds: 1),
             reverseTransitionDuration: const Duration(seconds: 1),
@@ -48,7 +49,7 @@ class AuthButton extends StatelessWidget {
                 ),
               );
             }),
-      );
+      ); */
     }
   }
 
