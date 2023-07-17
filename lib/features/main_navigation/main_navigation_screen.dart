@@ -59,7 +59,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   Future<void> _openKakaoMapScreen(BuildContext context) async {
     KakaoMapUtil util = KakaoMapUtil();
-
+    String hana = 'hans';
     // String url = await util.getResolvedLink(
     //     util.getKakaoMapURL(37.402056, 127.108212, name: 'Kakao 본사'));
 
