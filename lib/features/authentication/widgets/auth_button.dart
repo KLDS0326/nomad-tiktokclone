@@ -25,7 +25,7 @@ class AuthButton extends StatelessWidget {
         ),
       );
     } else if (screenMove == "user") {
-      context.push(UserNameScreen.routeName);
+      context.pushNamed(UserNameScreen.routeName);
 /*       Navigator.of(context).push(
         PageRouteBuilder(
             transitionDuration: const Duration(seconds: 1),
