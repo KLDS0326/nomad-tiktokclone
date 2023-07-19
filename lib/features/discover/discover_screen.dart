@@ -33,11 +33,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   final TextEditingController _textEditingController =
       TextEditingController(text: "무엇을 검색해볼까");
   void _onSearchChanged(String value) {
-    print("입력내용 받기 $value");
+    // print("입력내용 받기 $value");
   }
 
   void _onSearchSubmitted(String value) {
-    print("검색하기 $value");
+    //print("검색하기 $value");
   }
 
   //컨트롤러 사용할 때에는 dispose를 함께 써주어야함. 메모리누수방지 앱성능/자원관리

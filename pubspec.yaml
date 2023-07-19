@@ -46,6 +46,10 @@ dependencies:
   google_fonts: 4.0.1
   go_router: 6.0.2
   flutter_localization: ^0.1.12
+  permission_handler: ^10.4.3
+  camera: ^0.10.5+2
+  gallery_saver: 2.3.2
+  image_picker: ^1.0.1
 
 dev_dependencies:
   flutter_test:
