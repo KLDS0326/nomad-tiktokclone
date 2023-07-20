@@ -47,9 +47,15 @@
 	<string>your usage description here</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>your usage description here</string>
+	<key> NSPhotoLibraryUsageDescription </key>
+	<string> Privacy Photo Library </string>
+	
+	
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+
 </dict>
 </plist>
