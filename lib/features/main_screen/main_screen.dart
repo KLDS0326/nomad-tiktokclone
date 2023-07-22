@@ -5,8 +5,8 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/google_places/google_search_main_home.dart';
 import 'package:tiktok_clone/features/google_places/google_search_screen.dart';
-import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
-import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok_clone/common/widgets/nav_tab.dart';
+import 'package:tiktok_clone/common/widgets/post_video_button.dart';
 import 'package:tiktok_clone/features/videos/video_timeline_screen.dart';
 
 class MainScreen extends StatefulWidget {
