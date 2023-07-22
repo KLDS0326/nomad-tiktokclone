@@ -18,7 +18,8 @@ class AuthButton extends StatelessWidget {
 
   void _onButtonTap(BuildContext context) {
     if (screenMove == "email") {
-      Navigator.of(context).push(
+      Navigator.push(
+        context,
         MaterialPageRoute(
           builder: (context) => const LoginFormScreen(),
         ),
