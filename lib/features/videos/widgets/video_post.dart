@@ -9,6 +9,7 @@ import 'package:tiktok_clone/features/videos/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
+import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 
 class VideoPost extends StatefulWidget {
   final Function onVideoFinished;
@@ -192,6 +193,19 @@ class _VideoPostState extends State<VideoPost>
                   ),
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            left: 20,
+            top: 40,
+            child: IconButton(
+              icon: FaIcon(
+                VideoConfig.of(context).autoMute
+                    ? FontAwesomeIcons.volumeOff
+                    : FontAwesomeIcons.volumeHigh,
+                color: Colors.white,
+              ),
+              onPressed: () {},
             ),
           ),
           const Positioned(
