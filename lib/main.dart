@@ -60,7 +60,6 @@ void main() {
 //틱톡 클론코딩
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/router.dart';
 import 'package:tiktok_clone/util.dart';
@@ -91,124 +90,122 @@ class TikTokApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // S.load(const Locale("en"));
-    return VideoConfig(
-      child: MaterialApp.router(
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
-        title: 'TikTok Clone',
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en'),
-          Locale('ko'),
-        ],
-        themeMode: ThemeMode.system, //시스템 설정 따라감.
-        theme: ThemeData(
-          useMaterial3: true,
-          textTheme: Typography.blackMountainView, //
-          brightness: Brightness.light,
-          /* textTheme: TextTheme(
-              displayLarge: GoogleFonts.openSans(
-                  fontSize: 95, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-              displayMedium: GoogleFonts.openSans(
-                  fontSize: 59, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-              displaySmall:
-                  GoogleFonts.openSans(fontSize: 48, fontWeight: FontWeight.w400),
-              headlineMedium: GoogleFonts.openSans(
-                  fontSize: 34, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-              headlineSmall:
-                  GoogleFonts.openSans(fontSize: 24, fontWeight: FontWeight.w400),
-              titleLarge: GoogleFonts.openSans(
-                  fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-              titleMedium: GoogleFonts.openSans(
-                  fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-              titleSmall: GoogleFonts.openSans(
-                  fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-              bodyLarge: GoogleFonts.roboto(
-                  fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-              bodyMedium: GoogleFonts.roboto(
-                  fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-              labelLarge: GoogleFonts.roboto(
-                  fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-              bodySmall: GoogleFonts.roboto(
-                  fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-              labelSmall: GoogleFonts.roboto(
-                  fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
-            ), */
+    return MaterialApp.router(
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+      title: 'TikTok Clone',
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ko'),
+      ],
+      themeMode: ThemeMode.system, //시스템 설정 따라감.
+      theme: ThemeData(
+        useMaterial3: true,
+        textTheme: Typography.blackMountainView, //
+        brightness: Brightness.light,
+        /* textTheme: TextTheme(
+            displayLarge: GoogleFonts.openSans(
+                fontSize: 95, fontWeight: FontWeight.w300, letterSpacing: -1.5),
+            displayMedium: GoogleFonts.openSans(
+                fontSize: 59, fontWeight: FontWeight.w300, letterSpacing: -0.5),
+            displaySmall:
+                GoogleFonts.openSans(fontSize: 48, fontWeight: FontWeight.w400),
+            headlineMedium: GoogleFonts.openSans(
+                fontSize: 34, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+            headlineSmall:
+                GoogleFonts.openSans(fontSize: 24, fontWeight: FontWeight.w400),
+            titleLarge: GoogleFonts.openSans(
+                fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+            titleMedium: GoogleFonts.openSans(
+                fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+            titleSmall: GoogleFonts.openSans(
+                fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
+            bodyLarge: GoogleFonts.roboto(
+                fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+            bodyMedium: GoogleFonts.roboto(
+                fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
+            labelLarge: GoogleFonts.roboto(
+                fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
+            bodySmall: GoogleFonts.roboto(
+                fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
+            labelSmall: GoogleFonts.roboto(
+                fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
+          ), */
 
-          scaffoldBackgroundColor: Colors.white,
-          bottomAppBarTheme: BottomAppBarTheme(
-              color: isDarkMode(context)
-                  ? Colors.grey.shade900
-                  : Colors.grey.shade50),
-          primaryColor: const Color(0xFFE9435A),
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-            selectionColor: Color(0xFFE9435A),
-          ),
-          // 버튼 터치 시 스플래쉬 되지않도록 함.
-          splashColor: Colors.transparent,
-          // 길게 누르기도 없애려면,
-          //highlightColor: Colors.transparent,
-          appBarTheme: const AppBarTheme(
-            elevation: 0,
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
-            titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: Sizes.size16 + Sizes.size2,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-
-          tabBarTheme: TabBarTheme(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
-            indicatorColor: Colors.black,
+        scaffoldBackgroundColor: Colors.white,
+        bottomAppBarTheme: BottomAppBarTheme(
+            color: isDarkMode(context)
+                ? Colors.grey.shade900
+                : Colors.grey.shade50),
+        primaryColor: const Color(0xFFE9435A),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+          selectionColor: Color(0xFFE9435A),
+        ),
+        // 버튼 터치 시 스플래쉬 되지않도록 함.
+        splashColor: Colors.transparent,
+        // 길게 누르기도 없애려면,
+        //highlightColor: Colors.transparent,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        darkTheme: ThemeData(
-          useMaterial3: true,
-          tabBarTheme: TabBarTheme(
-            indicatorColor: Colors.white,
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey.shade700,
-          ),
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-          ),
-          textTheme: Typography.whiteMountainView,
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.black,
-          appBarTheme: AppBarTheme(
-            surfaceTintColor: Colors.grey.shade900,
-            backgroundColor: Colors.grey.shade900,
-            foregroundColor: Colors.white,
-            titleTextStyle: const TextStyle(
-              color: Colors.white,
-              fontSize: Sizes.size16 + Sizes.size2,
-              fontWeight: FontWeight.w600,
-            ),
-            actionsIconTheme: IconThemeData(
-              color: Colors.grey.shade100,
-            ),
-            iconTheme: IconThemeData(
-              color: Colors.grey.shade100,
-            ),
-          ),
-          bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey.shade900),
-          primaryColor: const Color(0xFFE9435A),
-        ),
 
-        //home: const SignUpScreen()
-        // const SignUpScreen()  //ActivityScreen() // MainScreen() -> 스터디앱
-        //MapsDemo() //const MainNavigationScreen() //MapSample() //const MainNavigationScreen(),  //
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
+        ),
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        tabBarTheme: TabBarTheme(
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
+        textTheme: Typography.whiteMountainView,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.grey.shade900,
+          backgroundColor: Colors.grey.shade900,
+          foregroundColor: Colors.white,
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+          actionsIconTheme: IconThemeData(
+            color: Colors.grey.shade100,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.grey.shade100,
+          ),
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(color: Colors.grey.shade900),
+        primaryColor: const Color(0xFFE9435A),
+      ),
+
+      //home: const SignUpScreen()
+      // const SignUpScreen()  //ActivityScreen() // MainScreen() -> 스터디앱
+      //MapsDemo() //const MainNavigationScreen() //MapSample() //const MainNavigationScreen(),  //
     );
   }
 }

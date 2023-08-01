@@ -28,15 +28,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          SwitchListTile.adaptive(
-            value: VideoConfigData.of(context).autoMute,
-            onChanged: (value) {
-              VideoConfigData.of(context).toggleMuted();
-            },
-            title: const Text("Auto Mute"),
-            subtitle: const Text("Videos will be muted by default."),
+          AnimatedBuilder(
+            animation: videoConfig,
+            builder: (context, child) => SwitchListTile.adaptive(
+              value: videoConfig.autoMute,
+              onChanged: (value) {
+                videoConfig.toggleAutoMute();
+              },
+              title: const Text("Mute video"),
+              subtitle: const Text("Videos will be muted by default."),
+            ),
           ),
-          CupertinoSwitch(
+          SwitchListTile(
             value: _notifications,
             onChanged: _onNotificationsChanged,
           ),
