@@ -50,7 +50,7 @@ dependencies:
   camera: ^0.10.5+2
   gallery_saver: 2.3.2
   image_picker: ^1.0.1
-
+  provider: 6.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

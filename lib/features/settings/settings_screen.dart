@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -15,9 +16,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // bool? nullable
   void _onNotificationsChanged(bool? newValue) {
     if (newValue == null) return;
-    setState(() {
-      _notifications = newValue;
-    });
+    setState(
+      () {
+        _notifications = newValue;
+      },
+    );
   }
 
   @override
@@ -28,20 +31,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
-          ValueListenableBuilder(
-            valueListenable: videoConfig,
-            builder: (context, value, child) => SwitchListTile.adaptive(
-              value: value,
-              onChanged: (value) {
-                videoConfig.value = !videoConfig.value;
-              },
-              title: const Text("Mute video"),
-              subtitle: const Text("Videos will be muted by default."),
-            ),
-          ),
-          SwitchListTile(
-            value: _notifications,
-            onChanged: _onNotificationsChanged,
+          SwitchListTile.adaptive(
+            value: context.watch<VideoConfig>().isMuted,
+            onChanged: (value) => context.read<VideoConfig>().toggleIsMuted(),
+            title: const Text("Aute Mute"),
+            subtitle: const Text("Videos muted by default."),
           ),
           Switch(
             value: _notifications,
