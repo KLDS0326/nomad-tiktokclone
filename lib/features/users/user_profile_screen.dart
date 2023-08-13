@@ -307,7 +307,7 @@ class UserAccount extends StatelessWidget {
           formatCount(),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: Sizes.size18,
+            fontSize: Sizes.size16,
           ),
         ),
         Gaps.v3,
