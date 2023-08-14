@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kakaomap_webview/kakaomap_webview.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
-import 'package:tiktok_clone/features/kakao_map/kakao_map_screen.dart';
 import 'package:tiktok_clone/common/widgets/nav_tab.dart';
 import 'package:tiktok_clone/common/widgets/post_video_button.dart';
 import 'package:tiktok_clone/features/users/user_profile_screen.dart';
@@ -65,22 +63,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   void _onPostVideoButtonTap() {
     context.pushNamed(VideoRecordingScreen.routeName);
-  }
-
-  Future<void> _openKakaoMapScreen(BuildContext context) async {
-    KakaoMapUtil util = KakaoMapUtil();
-
-    // String url = await util.getResolvedLink(
-    //     util.getKakaoMapURL(37.402056, 127.108212, name: 'Kakao 본사'));
-
-    /// This is short form of the above comment
-    String url =
-        await util.getMapScreenURL(37.402056, 127.108212, name: 'Kakao 본사');
-
-    debugPrint('url : $url');
-
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => KakaoMapScreen(url: url)));
   }
 
   @override
