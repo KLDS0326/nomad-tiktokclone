@@ -46,6 +46,7 @@ class VideoPreviewScreenState extends ConsumerState<VideoPreviewScreen> {
   void initState() {
     super.initState();
     _initVideo();
+    print(File(widget.video.path));
   }
 
   Future<void> _saveToGallery() async {

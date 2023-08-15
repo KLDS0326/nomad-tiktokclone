@@ -69,11 +69,16 @@ import 'package:tiktok_clone/util.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:tiktok_clone/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //플러터 엔진과 프레임워크를 묶음. 바인딩 초기화
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   //세로방향고정
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
