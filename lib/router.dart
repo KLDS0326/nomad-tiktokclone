@@ -13,6 +13,7 @@ import 'package:tiktok_clone/features/authentication/repos/authentication_repo.d
 
 final routerProvider = Provider(
   (ref) {
+//    ref.watch(authState);
     return GoRouter(
       initialLocation: "/home",
       redirect: (context, state) {
