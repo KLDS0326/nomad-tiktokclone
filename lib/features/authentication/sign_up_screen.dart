@@ -6,8 +6,10 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tiktok_clone/features/authentication/view_models/social_auth_view_model.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends ConsumerWidget {
   static const routeName = "signUp";
   static const routeURL = "/";
   const SignUpScreen({super.key});
@@ -17,7 +19,7 @@ class SignUpScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return OrientationBuilder(
       //핸드폰 방향을 알려줌.
       builder: (context, orientation) {
@@ -83,13 +85,16 @@ class SignUpScreen extends StatelessWidget {
                     AuthButton(
                       icon: const FaIcon(FontAwesomeIcons.user),
                       text: S.of(context).emailPasswordButton,
-                      screenMove: "user",
                     ),
                     Gaps.v16,
-                    AuthButton(
-                      icon: const FaIcon(FontAwesomeIcons.apple),
-                      text: S.of(context).appleButton,
-                      screenMove: "apple",
+                    GestureDetector(
+                      onTap: () => ref
+                          .read(socialAuthProvider.notifier)
+                          .githubSingIn(context),
+                      child: const AuthButton(
+                        icon: FaIcon(FontAwesomeIcons.github),
+                        text: "Continue with Github",
+                      ),
                     ),
                   ],
                   if (orientation == Orientation.landscape)
@@ -99,7 +104,6 @@ class SignUpScreen extends StatelessWidget {
                           child: AuthButton(
                             icon: const FaIcon(FontAwesomeIcons.user),
                             text: S.of(context).emailPasswordButton,
-                            screenMove: "user",
                           ),
                         ),
                         Gaps.h16,
@@ -107,7 +111,6 @@ class SignUpScreen extends StatelessWidget {
                           child: AuthButton(
                             icon: const FaIcon(FontAwesomeIcons.apple),
                             text: S.of(context).appleButton,
-                            screenMove: "apple",
                           ),
                         ),
                       ],

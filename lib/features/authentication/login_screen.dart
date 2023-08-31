@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/utils.dart';
+import 'package:tiktok_clone/features/authentication/view_models/social_auth_view_model.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   static String routeName = "login";
   static String routeURL = "/login";
 
@@ -17,7 +19,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       bottomNavigationBar: Container(
         color: isDarkMode(context) ? null : Colors.grey.shade50,
@@ -47,15 +49,15 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: Sizes.size40,
           ),
           child: Column(
             children: [
               Gaps.v80,
-              Text(
+              const Text(
                 "Log in to 커플스터디앱",
                 style: TextStyle(
                   fontSize: Sizes.size24,
@@ -63,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Gaps.v20,
-              Opacity(
+              const Opacity(
                 opacity: 0.7,
                 child: Text(
                   "Manage your account, check notif ications, comment on videos, and more.",
@@ -74,16 +76,18 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Gaps.v40,
-              AuthButton(
+              const AuthButton(
                 icon: FaIcon(FontAwesomeIcons.user),
                 text: "Use email & password",
-                screenMove: "email",
               ),
               Gaps.v16,
-              AuthButton(
-                icon: FaIcon(FontAwesomeIcons.apple),
-                text: "Continue with Apple",
-                screenMove: "apple",
+              GestureDetector(
+                onTap: () =>
+                    ref.read(socialAuthProvider.notifier).githubSingIn(context),
+                child: const AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.github),
+                  text: "Continue with Github",
+                ),
               ),
             ],
           ),
