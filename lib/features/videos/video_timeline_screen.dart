@@ -11,19 +11,12 @@ class VideoTimelineScreen extends ConsumerStatefulWidget {
 }
 
 class VideoTimelineScreenState extends ConsumerState<VideoTimelineScreen> {
-  int _itemCount = 4;
+  int _itemCount = 0;
 
   final PageController _pageController = PageController();
 
   final Duration _scrollDuration = const Duration(microseconds: 200);
   final Curve _scrollCurve = Curves.linear;
-
-  /*List<Color> colors = [
-    Colors.blue,
-    Colors.red,
-    Colors.yellow,
-    Colors.teal,
-  ]; */
 
   void _onPageChanged(int page) {
     if (page == _itemCount - 1) {
@@ -32,16 +25,9 @@ class VideoTimelineScreenState extends ConsumerState<VideoTimelineScreen> {
         duration: _scrollDuration,
         curve: _scrollCurve,
       );
-      _itemCount = _itemCount + 4;
-/*       colors.addAll(
-        [
-          Colors.blue,
-          Colors.red,
-          Colors.yellow,
-          Colors.teal,
-        ],
-      ); */
-      setState(() {});
+    }
+    if (page == _itemCount - 1) {
+      ref.watch(timelineProvider.notifier).fetchNextPage();
     }
   }
 
@@ -79,24 +65,29 @@ class VideoTimelineScreenState extends ConsumerState<VideoTimelineScreen> {
               style: const TextStyle(color: Colors.white),
             ),
           ),
-          data: (videos) => RefreshIndicator(
-            onRefresh: _onRefresh, //async or future 반환
-            displacement: 50,
-            edgeOffset: 20,
-            color: Theme.of(context).primaryColor,
-            strokeWidth: 3,
-
-            child: PageView.builder(
-              controller: _pageController,
-              scrollDirection: Axis.vertical,
-              onPageChanged: _onPageChanged,
-              itemCount: _itemCount,
-              itemBuilder: (context, index) => VideoPost(
-                onVideoFinished: _onVideoFinished,
-                index: index,
+          data: (videos) {
+            _itemCount = videos.length;
+            return RefreshIndicator(
+              onRefresh: _onRefresh,
+              displacement: 50,
+              edgeOffset: 20,
+              color: Theme.of(context).primaryColor,
+              child: PageView.builder(
+                controller: _pageController,
+                scrollDirection: Axis.vertical,
+                onPageChanged: _onPageChanged,
+                itemCount: videos.length,
+                itemBuilder: (context, index) {
+                  final videoData = videos[index];
+                  return VideoPost(
+                    onVideoFinished: _onVideoFinished,
+                    index: index,
+                    videoData: videoData,
+                  );
+                },
               ),
-            ),
-          ),
+            );
+          },
         );
   }
 }

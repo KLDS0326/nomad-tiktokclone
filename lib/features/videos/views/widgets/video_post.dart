@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/videos/models/video_model.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_action_button.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
@@ -14,11 +15,13 @@ import 'package:tiktok_clone/generated/l10n.dart';
 
 class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
+  final VideoModel videoData;
 
   final int index;
 
   const VideoPost({
     super.key,
+    required this.videoData,
     required this.onVideoFinished,
     required this.index,
   });
@@ -175,8 +178,9 @@ class VideoPostState extends ConsumerState<VideoPost>
           Positioned.fill(
             child: _videoPlayerController.value.isInitialized
                 ? VideoPlayer(_videoPlayerController)
-                : Container(
-                    color: Colors.black,
+                : Image.network(
+                    widget.videoData.thumbnailUrl,
+                    fit: BoxFit.cover,
                   ),
           ),
           Positioned.fill(
@@ -223,15 +227,15 @@ class VideoPostState extends ConsumerState<VideoPost>
               onPressed: _onPlaybackConfigChanged,
             ),
           ),
-          const Positioned(
+          Positioned(
             bottom: 20,
             left: 10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "@지혜",
-                  style: TextStyle(
+                  "@${widget.videoData.creator}",
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: Sizes.size20,
@@ -239,8 +243,8 @@ class VideoPostState extends ConsumerState<VideoPost>
                 ),
                 Gaps.v24,
                 Text(
-                  "This is 검암 부동산입니다.",
-                  style: TextStyle(
+                  widget.videoData.description,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: Sizes.size16,
                   ),
@@ -253,24 +257,27 @@ class VideoPostState extends ConsumerState<VideoPost>
             right: 10,
             child: Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                      "https://lh3.googleusercontent.com/a/AGNmyxbL4Yi9AfuVk0aJkpmgKb_Xlzkpiu1LFiOWhLsILA=s576"),
-                  child: Text("지혜"),
+                    "https://firebasestorage.googleapis.com/v0/b/tik-tok-jegal.appspot.com/o/avatars%2F${widget.videoData.creatorUid}?alt=media",
+                  ),
+                  child: Text(widget.videoData.creator),
                 ),
                 Gaps.v24,
                 VideoButton(
                     icon: FontAwesomeIcons.solidHeart,
-                    text: S.of(context).likeCount(98798711111987)),
+                    text: S.of(context).likeCount(widget.videoData.likes)),
                 Gaps.v24,
                 GestureDetector(
                   onTap: () => _onCommentsTap(context),
                   child: VideoButton(
                     icon: FontAwesomeIcons.solidComment,
-                    text: S.of(context).commentCount(65656),
+                    text: S.of(context).commentCount(
+                          widget.videoData.comments,
+                        ),
                   ),
                 ),
                 Gaps.v24,
