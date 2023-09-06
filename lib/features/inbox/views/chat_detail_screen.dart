@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/inbox/view_models/messages_view_model.dart';
 
-class ChatDetailScreen extends StatefulWidget {
+class ChatDetailScreen extends ConsumerStatefulWidget {
   static const String routeName = "chatDetail";
   static const String routeURL = ":chatId";
 
@@ -12,11 +14,21 @@ class ChatDetailScreen extends StatefulWidget {
   const ChatDetailScreen({super.key, required this.chatId});
 
   @override
-  State<ChatDetailScreen> createState() => _ChatDetailScreenState();
+  ConsumerState<ChatDetailScreen> createState() => _ChatDetailScreenState();
 }
 
-class _ChatDetailScreenState extends State<ChatDetailScreen> {
+class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
   bool _isWriting = false;
+  final TextEditingController _editingController = TextEditingController();
+
+  void _onSendPress() {
+    final text = _editingController.text;
+    if (text == "") {
+      return;
+    }
+    ref.read(messagesProvider.notifier).sendMessage(text);
+    _editingController.text = "";
+  }
 
   void _onStartWriting() {
     setState(() {
@@ -33,6 +45,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(messagesProvider).isLoading;
     return Scaffold(
       appBar: AppBar(
           title: ListTile(
@@ -179,6 +192,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                         child: SizedBox(
                           height: Sizes.size44,
                           child: TextField(
+                            controller: _editingController,
                             onTap: _onStartWriting,
                             expands: true,
                             minLines: null,
@@ -220,9 +234,13 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                       ),
                       Gaps.h10,
                       GestureDetector(
-                        onTap: _stopWriting,
+                        onTap: isLoading ? null : _onSendPress,
                         child: Container(
-                          child: const FaIcon(FontAwesomeIcons.paperPlane),
+                          child: FaIcon(
+                            isLoading
+                                ? FontAwesomeIcons.hourglass
+                                : FontAwesomeIcons.paperPlane,
+                          ),
                         ),
                       ),
                     ],
