@@ -31,22 +31,22 @@ class MessagesViewModel extends AsyncNotifier<void> {
 final messagesProvider = AsyncNotifierProvider<MessagesViewModel, void>(
   () => MessagesViewModel(),
 );
-final chatProvider = StreamProvider<List<MessageModel>>((ref) {
+final chatProvider = StreamProvider.autoDispose<List<MessageModel>>((ref) {
   final db = FirebaseFirestore.instance;
 
   return db
       .collection("chat_rooms")
-      .doc("5wIEF4qSGhFMKms4Pjuu")
+      .doc("u8d5H89xHUtw4wnhKBEV")
       .collection("texts")
       .orderBy("createdAt")
       .snapshots()
-      .map(
-        (event) => event.docs
-            .map(
-              (doc) => MessageModel.fromJson(
-                doc.data(),
-              ),
-            )
-            .toList(),
-      );
+      .map((event) => event.docs
+          .map(
+            (doc) => MessageModel.fromJson(
+              doc.data(),
+            ),
+          )
+          .toList()
+          .reversed
+          .toList());
 });
