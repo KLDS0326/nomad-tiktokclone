@@ -71,6 +71,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tiktok_clone/firebase_options.dart';
+import 'package:tiktok_clone/features/notifications/notifications_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -109,7 +110,7 @@ class TikTokApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // S.load(const Locale("en"));
+    ref.watch(notificationsProvider);
     return MaterialApp.router(
       routerConfig: ref.watch(routerProvider),
       debugShowCheckedModeBanner: false,
